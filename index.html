@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Video App</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+        }
+
+        .app {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .video-card {
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+
+        .thumbnail {
+            height: 200px;
+            background: #374151;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 60px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #229ED9;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <h1>🎬 My Video App</h1>
+
+    <p id="welcome">Welcome!</p>
+
+    <div class="video-card">
+
+        <div class="thumbnail">
+            🎥
+        </div>
+
+        <h2>Video 1</h2>
+
+        <p>
+            ভিডিও দেখতে নিচের বাটনে চাপুন।
+        </p>
+
+        <button onclick="watchVideo()">
+            ▶ Watch & Unlock
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    const user = tg.initDataUnsafe?.user;
+
+    if (user) {
+        document.getElementById("welcome").innerText =
+            "স্বাগতম, " + user.first_name + "!";
+    }
+
+    function watchVideo() {
+        alert("পরের ধাপে এখানে Monetag Ad যুক্ত হবে।");
+    }
+</script>
+
+</body>
+</html>
