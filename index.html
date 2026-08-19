@@ -8,6 +8,11 @@
 
     <title>My Video App</title>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- Monetag -->
+    <script src="//monetag.com/tag.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -48,16 +53,22 @@
         button {
             width: 100%;
             padding: 15px;
+
             border: none;
             border-radius: 10px;
+
             background: #229ED9;
             color: white;
+
             font-size: 17px;
             font-weight: bold;
         }
-    </style>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        #videoArea {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,18 +88,29 @@
         <h2>Video 1</h2>
 
         <p>
-            ভিডিও দেখতে নিচের বাটনে চাপুন।
+            ভিডিও দেখতে আগে বিজ্ঞাপন দেখুন।
         </p>
 
-        <button onclick="watchVideo()">
+        <button onclick="watchAd()">
             ▶ Watch & Unlock
         </button>
+
+        <div id="videoArea">
+            <p>🔓 ভিডিও আনলক হয়েছে!</p>
+
+            <!-- এখানে পরে TeraBox video যোগ করব -->
+
+            <p>
+                এখানে আপনার ভিডিও Play হবে।
+            </p>
+        </div>
 
     </div>
 
 </div>
 
 <script>
+
     const tg = window.Telegram.WebApp;
 
     tg.ready();
@@ -101,9 +123,27 @@
             "স্বাগতম, " + user.first_name + "!";
     }
 
-    function watchVideo() {
-        alert("পরের ধাপে এখানে Monetag Ad যুক্ত হবে।");
+
+    function watchAd() {
+
+        show_11609578().then(() => {
+
+            // Ad সম্পূর্ণ দেখা হয়েছে
+
+            document.getElementById("videoArea").style.display = "block";
+
+            alert("Ad দেখা হয়েছে! ভিডিও আনলক হয়েছে।");
+
+        }).catch((error) => {
+
+            console.log("Ad error:", error);
+
+            alert("Ad চালু করা যায়নি। আবার চেষ্টা করুন।");
+
+        });
+
     }
+
 </script>
 
 </body>
